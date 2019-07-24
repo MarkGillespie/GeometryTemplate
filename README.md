@@ -11,3 +11,8 @@ Then run the code with
 ```
 bin/run /path/to/a/mesh
 ```
+
+Run the tests with
+```
+bin/test
+```
