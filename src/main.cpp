@@ -26,9 +26,9 @@ void myCallback() {}
 int main(int argc, char **argv) {
 
   // Configure the argument parser
-  args::ArgumentParser parser("Intrinsic Subdivision");
+  args::ArgumentParser parser("Geometry program");
   args::Positional<std::string> inputFilename(parser, "mesh",
-                                              "Mesh to be subdivided.");
+                                              "Mesh to be processed.");
 
   // Parse args
   try {
