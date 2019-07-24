@@ -6,11 +6,11 @@ if (CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR)
 endif()
 
 add_executable(
-  subdivide
-  subdivide.cpp
+  run
+  main.cpp
 )
-target_include_directories(subdivide PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include")
-target_link_libraries(subdivide polyscope geometry-central)
+target_include_directories(run PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include")
+target_link_libraries(run polyscope geometry-central)
 
 option(PACKAGE_TESTS "Build the tests" ON)
 
