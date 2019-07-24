@@ -61,15 +61,4 @@ endif()
 # == Deps
 add_subdirectory(deps/geometry-central)
 add_subdirectory(deps/polyscope)
-
-# == Build our project stuff
-
-set(SRCS 
-  src/main.cpp
-	# add any other source files here
-)
-
-# To change the name of your executable, change "gc_project" in the lines below to whatever you want
-add_executable(gc_project "${SRCS}")
-target_include_directories(gc_project PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_link_libraries(gc_project geometry-central polyscope)
+add_subdirectory(src)

@@ -6,3 +6,6 @@
 	path = deps/polyscope
 	url = https://github.com/nmwsharp/polyscope.git
 	branch = v02
+[submodule "deps/googletest"]
+	path = deps/googletest
+	url = https://github.com/google/googletest.git
