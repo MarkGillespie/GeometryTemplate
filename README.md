@@ -1,28 +1,13 @@
-# gc-polyscope-project-template
-A template project to get started with geometry-central and Polyscope.
+# GeometryTemplate
+A template project to get started with geometry-central and Polyscope. Copied from Nick's template [here](https://github.com/nmwsharp/gc-polyscope-project-template), but with code for googletest added in.
 
-TODO instructions for IDEs and Windows
-
-TODO this repo is set up as a template, but it seems the submodules don't get copied to the new project?
-
-### Get the code
-Clone the project 
+This repo is set up as a template, but it seems the submodules don't get copied to the new project. Run `setup.sh` to set up the required submodules and to run cmake. To build the code, you can run
 ```
-git clone --recursive https://github.com/nmwsharp/gc-polyscope-project-template.git
-```
-
-### Build the code
-
-Configure (with cmake) and compile
-```
-cd gc-polyscope-project-template
-mkdir build
 cd build
-cmake ..
-make -j6
+make -j7
 ```
 
-### Run the code
+Then run the code with
 ```
-./bin/gc_project /path/to/a/mesh
+bin/run /path/to/a/mesh
 ```
