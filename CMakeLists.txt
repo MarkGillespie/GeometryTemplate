@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.10.0)
 
 project(gc_polyscope_example)
 
+# == Export compile commands
+set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 ### Configure output locations
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)

@@ -11,3 +11,7 @@ mkdir build
 cd build
 cmake ..
 
+cd ../src
+mkdir build
+cd build
+ln -s ../../build/compile_commands.json compile_commands.json
