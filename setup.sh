@@ -9,7 +9,7 @@ git submodule update --init --recursive
 cd ..
 mkdir build
 cd build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 
 cd ../src
 mkdir build
