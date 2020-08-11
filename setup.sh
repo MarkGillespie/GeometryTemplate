@@ -2,9 +2,9 @@
 
 mkdir deps
 cd deps
-git submodule add git@github.com/MarkGillespie/polyscope.git
-git submodule add git@github.com/MarkGillespie/geometry-central.git
-git submodule add git@github.com/google/googletest
+git submodule add git@github.com:MarkGillespie/polyscope.git
+git submodule add git@github.com:MarkGillespie/geometry-central.git
+git submodule add git@github.com:google/googletest
 git submodule update --init --recursive
 cd ..
 mkdir build
