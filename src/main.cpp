@@ -1,5 +1,6 @@
-#include "geometrycentral/surface/halfedge_mesh.h"
+#include "geometrycentral/surface/manifold_surface_mesh.h"
 #include "geometrycentral/surface/meshio.h"
+#include "geometrycentral/surface/simple_idt.h"
 #include "geometrycentral/surface/vertex_position_geometry.h"
 
 #include "polyscope/polyscope.h"
@@ -12,7 +13,7 @@ using namespace geometrycentral;
 using namespace geometrycentral::surface;
 
 // == Geometry-central data
-std::unique_ptr<HalfedgeMesh> mesh;
+std::unique_ptr<ManifoldSurfaceMesh> mesh;
 std::unique_ptr<VertexPositionGeometry> geometry;
 
 // Polyscope visualization handle, to quickly add data to the surface
@@ -55,14 +56,22 @@ int main(int argc, char** argv) {
     polyscope::state::userCallback = myCallback;
 
     // Load mesh
-    std::tie(mesh, geometry) = loadMesh(filename);
+    std::tie(mesh, geometry) = readManifoldSurfaceMesh(filename);
     std::cout << "Genus: " << mesh->genus() << std::endl;
 
     // Register the mesh with polyscope
     psMesh = polyscope::registerSurfaceMesh(
-        polyscope::guessNiceNameFromPath(filename),
-        geometry->inputVertexPositions, mesh->getFaceVertexList(),
-        polyscopePermutations(*mesh));
+        polyscope::guessNiceNameFromPath(filename), geometry->vertexPositions,
+        mesh->getFaceVertexList(), polyscopePermutations(*mesh));
+
+    std::vector<double> vData;
+    vData.reserve(mesh->nVertices());
+    for (size_t iV = 0; iV < mesh->nVertices(); ++iV) {
+        vData.push_back(randomReal(0, 1));
+    }
+
+    auto q = psMesh->addVertexScalarQuantity("data", vData);
+    q->setEnabled(true);
 
     // Give control to the polyscope gui
     polyscope::show();
