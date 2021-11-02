@@ -8,6 +8,7 @@ endif()
 add_executable(
   run
   main.cpp
+  utils.cpp
 )
 target_include_directories(run PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include")
 target_link_libraries(run polyscope geometry-central)
