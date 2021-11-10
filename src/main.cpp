@@ -9,6 +9,8 @@
 #include "args/args.hxx"
 #include "imgui.h"
 
+#include "utils.h"
+
 using namespace geometrycentral;
 using namespace geometrycentral::surface;
 
