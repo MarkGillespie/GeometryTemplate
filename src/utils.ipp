@@ -29,6 +29,20 @@ std::ostream& operator<<(std::ostream& out, const std::pair<T, S>& data) {
 }
 
 template <typename T>
+std::ostream& operator<<(std::ostream& out, const std::set<T>& data) {
+    out << "{";
+    size_t iPrinted = 0;
+    for (const T& element : data) {
+        out << element;
+        if (iPrinted + 1 < data.size()) out << ", ";
+        if (iPrinted++ >= 4) break;
+    }
+    if (data.size() >= 5) out << "... (length " << data.size() << ")";
+    out << "}";
+    return out;
+}
+
+template <typename T>
 std::ostream& operator<<(std::ostream& out, const Eigen::Triplet<T>& data) {
     out << "(row: " << data.row() << ", col: " << data.col()
         << ", value: " << data.value() << ")";

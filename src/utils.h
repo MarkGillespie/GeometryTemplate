@@ -1,12 +1,18 @@
 #pragma once
 
 #include "geometrycentral/numerical/linear_algebra_utilities.h"
+#include "geometrycentral/surface/edge_length_geometry.h"
+#include "geometrycentral/surface/manifold_surface_mesh.h"
+#include "geometrycentral/surface/surface_point.h"
+#include "geometrycentral/utilities/vector2.h"
 #include "geometrycentral/utilities/vector3.h"
 
 #include <iostream>
+#include <set>
 #include <sstream>
 #include <string>
 
+using geometrycentral::Vector2;
 using geometrycentral::Vector3;
 using std::string;
 
@@ -31,13 +37,12 @@ class verbose_runtime_error : public std::runtime_error {
 
 //== Linear algebra helpers
 Eigen::Vector3d toEigen(const Vector3& v);
+Eigen::Vector2d toEigen(const Vector2& v);
 Vector3 fromEigen(const Eigen::Vector3d& v);
 Eigen::Matrix3d outer(const Vector3& v, const Vector3& w); // Returns vw^T
 
 //== Convenient printing helpers
-
-string getFilename(string filePath, bool withExtension = true,
-                   char seperator = '/');
+string getFilename(string filePath);
 
 // Verbose endl
 #define vendl                                                                  \
@@ -87,7 +92,37 @@ template <typename T, typename S>
 std::ostream& operator<<(std::ostream& out, const std::pair<T, S>& data);
 
 template <typename T>
+std::ostream& operator<<(std::ostream& out, const std::set<T>& data);
+
+template <typename T>
 std::ostream& operator<<(std::ostream& out, const Eigen::Triplet<T>& data);
 
+namespace geometrycentral {
+namespace surface {
+std::pair<std::unique_ptr<ManifoldSurfaceMesh>,
+          std::unique_ptr<EdgeLengthGeometry>>
+copyGeometry(ManifoldSurfaceMesh& mesh, IntrinsicGeometryInterface& geo);
+
+// From geometrycentral/src/surface/surface_point.cpp
+bool checkAdjacent(Vertex vA, Vertex vB);
+bool checkAdjacent(Vertex vA, Edge eB);
+bool checkAdjacent(Vertex vA, Face fB);
+bool checkAdjacent(Edge eA, Vertex vB);
+bool checkAdjacent(Edge eA, Edge eB);
+bool checkAdjacent(Edge eA, Face fB);
+bool checkAdjacent(Face fA, Vertex vB);
+bool checkAdjacent(Face fA, Edge eB);
+bool checkAdjacent(Face fA, Face fB);
+
+bool onFace(const SurfacePoint& p, Face f);
+bool isNear(const SurfacePoint& p, const SurfacePoint& q, double tol = 1e-8);
+
+} // namespace surface
+} // namespace geometrycentral
+
+// Returns the intersection of the line a1-a2 with line b1-b2 in barycentric
+// coordinates along line a1-a2 (i.e. (1-t)*a1 + t*a2 lies on line b1-b2 as
+// well)
+double intersectionTime(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2);
 
 #include "utils.ipp"
