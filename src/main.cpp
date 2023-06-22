@@ -16,7 +16,7 @@ using namespace geometrycentral::surface;
 
 // == Geometry-central data
 std::unique_ptr<ManifoldSurfaceMesh> mesh;
-std::unique_ptr<VertexPositionGeometry> geometry;
+std::unique_ptr<VertexPositionGeometry> geom;
 
 // Polyscope visualization handle, to quickly add data to the surface
 polyscope::SurfaceMesh* psMesh;
@@ -58,12 +58,12 @@ int main(int argc, char** argv) {
     polyscope::state::userCallback = myCallback;
 
     // Load mesh
-    std::tie(mesh, geometry) = readManifoldSurfaceMesh(filename);
+    std::tie(mesh, geom) = readManifoldSurfaceMesh(filename);
     std::cout << "Genus: " << mesh->genus() << std::endl;
 
     // Register the mesh with polyscope
     psMesh = polyscope::registerSurfaceMesh(
-        polyscope::guessNiceNameFromPath(filename), geometry->vertexPositions,
+        polyscope::guessNiceNameFromPath(filename), geom->vertexPositions,
         mesh->getFaceVertexList(), polyscopePermutations(*mesh));
 
     std::vector<double> vData;
