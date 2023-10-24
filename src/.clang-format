@@ -14,7 +14,6 @@ Cpp11BracedListStyle: 'true'
 IndentWidth: '4'
 KeepEmptyLinesAtTheStartOfBlocks: 'true'
 MaxEmptyLinesToKeep: '2'
-PointerAlignment: Left
 ReflowComments: 'true'
 SpacesInAngles: 'false'
 SpacesInParentheses: 'false'
