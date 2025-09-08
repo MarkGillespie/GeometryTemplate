@@ -35,6 +35,9 @@ class verbose_runtime_error : public std::runtime_error {
 #define verbose_assert(arg, msg)                                               \
     if (!(arg)) throw_verbose_runtime_error(msg);
 
+// get path relative to project directory
+std::string getDataPath(const std::string& relativePath);
+
 //== Linear algebra helpers
 Eigen::Vector3d toEigen(const Vector3& v);
 Eigen::Vector2d toEigen(const Vector2& v);

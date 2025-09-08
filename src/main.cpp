@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    std::string filename = "../../meshes/bunny_small.obj";
+    std::string filename = getDataPath("../meshes/bunny_small.obj");
     // Make sure a mesh name was given
     if (inputFilename) {
         filename = args::get(inputFilename);

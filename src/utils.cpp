@@ -13,6 +13,10 @@ verbose_runtime_error::verbose_runtime_error(const std::string& arg,
     msg = o.str();
 }
 
+std::string getDataPath(const std::string& relativePath) {
+    return std::string(PROJECT_SOURCE_DIR) + "/" + relativePath;
+}
+
 Eigen::Vector3d toEigen(const Vector3& v) {
     Eigen::Vector3d ret;
     ret << v.x, v.y, v.z;
