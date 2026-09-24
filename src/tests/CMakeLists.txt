@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 3.10.0)
 
 # Maybe stop from CMAKEing in the wrong place
 if (CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR)
-    message(FATAL_ERROR "Source and build directories cannot be the same. Go use the /build directory.")
+  message(FATAL_ERROR "Source and build directories cannot be the same. Go use the /build directory.")
 endif()
+
+# Force GoogleTest to use the same runtime library as your project
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 # https://cliutils.gitlab.io/modern-cmake/chapters/testing/googletest.html
 add_subdirectory("${PROJECT_SOURCE_DIR}/deps/googletest" "deps/googletest")
